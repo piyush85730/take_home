@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:take_home/core/constants/image_constants.dart';
 
@@ -11,4 +13,12 @@ void preLoadImages(BuildContext context) {
   for (final image in ImageConstants.imageList) {
     precacheImage(AssetImage(image), context);
   }
+}
+
+String getRandomImage() {
+  return ImageConstants.userList[Random().nextInt(6)];
+}
+
+String getPostImage() {
+  return ImageConstants.postList[Random().nextInt(11)];
 }

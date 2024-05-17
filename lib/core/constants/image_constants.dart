@@ -42,6 +42,31 @@ class ImageConstants {
     imgUser4,
     imgUser5,
     imgUser6,
-    imgUser7
+    imgUser7,
+  ];
+
+  static const userList = <String>[
+    imgUser1,
+    imgUser2,
+    imgUser3,
+    imgUser4,
+    imgUser5,
+    imgUser6,
+    imgUser7,
+  ];
+
+  static const postList = <String>[
+    imgPost1,
+    imgPost2,
+    imgPost3,
+    imgPost4,
+    imgPost5,
+    imgPost6,
+    imgPost7,
+    imgPost8,
+    imgPost9,
+    imgPost10,
+    imgPost11,
+    imgPost12,
   ];
 }
