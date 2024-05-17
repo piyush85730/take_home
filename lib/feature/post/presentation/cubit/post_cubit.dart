@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:take_home/core/error/failure.dart';
 import 'package:take_home/feature/post/domain/entity/post.dart';
@@ -22,7 +21,6 @@ class PostsCubit extends Cubit<PostsState> {
         emit(PostDataFailed(error: failure.error));
       },
       (r) {
-        debugPrint("getPosts -> ${r.length}");
         emit(PostDataLoaded(postList: r));
       },
     );

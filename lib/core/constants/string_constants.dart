@@ -1,7 +1,7 @@
 class StringConstants {
-  static const String appName = 'ProductListApp';
-  static const String strProductList = 'Product List';
-  static const String strProduct = 'Product';
+  static const String appName = 'Take Home';
+  static const String strPostList = 'Post List';
+  static const String strPost = 'Post';
   static const String strCarts = 'Carts';
   static const String strProductDetails = 'Product Details';
   static const String strPrice = 'Price';
@@ -23,7 +23,6 @@ class StringConstants {
 
 /// Routes
 class Routes {
-  static const String dashboardPage = "/dashboard";
-  static const String productDetailPage = "/productDetailPage";
-  static const String cartsDetailPage = "/cartsDetailPage";
+  static const String splashPage = "/splashPage";
+  static const String postsPage = "/postsPage";
 }

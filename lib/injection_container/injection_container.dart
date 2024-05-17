@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
 import 'package:one_context/one_context.dart';
+import 'package:take_home/core/presentation/cubits/check_internet_cubit/check_internet_cubit.dart';
 import 'package:take_home/core/services/api_service.dart';
 import 'package:take_home/core/services/short_hand.dart';
 import 'package:take_home/injection_container/injects/inject_cubits.dart';
@@ -19,6 +20,7 @@ Future<void> init() async {
 
   /// service
   sl
+    ..registerFactory(CheckInternetCubit.new)
     ..registerFactory<BuildContext>(() => OneContext.instance.context!)
     ..registerLazySingleton<ApiService>(ApiService.new)
     ..registerLazySingleton<ShortHand>(ShortHand.new);

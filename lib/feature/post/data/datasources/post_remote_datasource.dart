@@ -1,4 +1,5 @@
-import 'package:flutter/cupertino.dart';
+import 'dart:convert';
+
 import 'package:take_home/core/error/exceptions.dart';
 import 'package:take_home/core/services/api_service.dart';
 import 'package:take_home/feature/post/data/model/post_model.dart';
@@ -17,13 +18,9 @@ class PostRemoteDataSourceImpl implements PostRemoteDataSource {
   ) async {
     const path = "posts/";
     try {
-      debugPrint("getPost -> 0");
       final raw = await sl<ApiService>().getRequest(path: path);
-      debugPrint("getPost -> $raw");
       final res = raw.data;
-      debugPrint("getPost -> $res");
-      final postList = postModelFromJson(res);
-      debugPrint("getPost -> ${postList.length}");
+      final postList = postModelFromJson(json.encode(res));
       return postList;
     } catch (e) {
       throw ServerException(error: e.toString());

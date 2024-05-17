@@ -13,38 +13,18 @@ class PostItem extends StatelessWidget {
       child: Card(
         child: Container(
           padding: const EdgeInsets.all(8),
-          child: Row(
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
             children: [
-              Container(
-                padding: const EdgeInsets.all(8),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SizedBox(
-                      width: 230,
-                      child: Text(
-                        post.title,
-                        maxLines: 5,
-                        softWrap: true,
-                      ),
-                    ),
-                    const SizedBox(height: 5),
-                    SizedBox(
-                      width: 230,
-                      child: Text(
-                        post.body,
-                        overflow: TextOverflow.fade,
-                        maxLines: 5,
-                        softWrap: true,
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                  ],
-                ),
+              Text(
+                post.title,
+                maxLines: 5,
+                softWrap: true,
               ),
+              const SizedBox(height: 5),
+
             ],
           ),
         ),

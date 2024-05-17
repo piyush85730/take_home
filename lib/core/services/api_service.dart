@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 
 class ApiService {
   final Dio _dio = Dio()
@@ -12,9 +11,10 @@ class ApiService {
     required String path,
     Map<String, dynamic>? queryParams,
   }) async {
-    debugPrint("getProduct -> 1");
-    final response = await _dio.get("https://jsonplaceholder.typicode.com/posts/", queryParameters: queryParams);
-    debugPrint("getProduct -> $response");
+    final response = await _dio.get(
+      "https://jsonplaceholder.typicode.com/posts/",
+      queryParameters: queryParams,
+    );
     return response;
   }
 }

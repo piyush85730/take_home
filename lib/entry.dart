@@ -4,7 +4,10 @@ import 'package:one_context/one_context.dart';
 import 'package:take_home/core/constants/string_constants.dart';
 import 'package:take_home/core/constants/theme_constants.dart';
 import 'package:take_home/core/presentation/cubits/check_internet_cubit/check_internet_cubit.dart';
+import 'package:take_home/core/utils/utils.dart';
 import 'package:take_home/feature/post/presentation/cubit/post_cubit.dart';
+import 'package:take_home/feature/splash/presentation/cubit/splash_cubit.dart';
+import 'package:take_home/feature/splash/presentation/pages/splash_page.dart';
 import 'package:take_home/injection_container/injection_container.dart';
 import 'package:take_home/router.dart';
 
@@ -13,22 +16,24 @@ class Entry extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    preLoadImages(context);
     return MultiBlocProvider(
       providers: [
         BlocProvider(
           create: (context) => sl<CheckInternetCubit>(),
           lazy: false,
         ),
+        BlocProvider(create: (context) => sl<SplashCubit>()),
         BlocProvider(create: (context) => sl<PostsCubit>()),
       ],
       child: MaterialApp(
         title: StringConstants.appName,
         debugShowCheckedModeBanner: false,
         onGenerateRoute: AppRouter().generateRoute,
-        initialRoute: Routes.productDetailPage,
         builder: OneContext().builder,
         navigatorKey: OneContext().key,
         theme: ThemeData(
+          scaffoldBackgroundColor: ThemeColors.clrScaffoldBG,
           primaryColor: ThemeColors.clrWhite,
           primaryColorLight: ThemeColors.clrWhite,
           primaryColorDark: ThemeColors.clrWhite,
@@ -40,6 +45,7 @@ class Entry extends StatelessWidget {
           colorScheme:
               ColorScheme.fromSwatch().copyWith(surface: ThemeColors.clrWhite),
         ),
+        home: const SplashPage(),
       ),
     );
   }

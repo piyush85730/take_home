@@ -11,33 +11,35 @@ class PostsPage extends StatefulWidget {
   State<PostsPage> createState() => _PostsPageState();
 }
 
-class _PostsPageState extends State<PostsPage>
-    with AutomaticKeepAliveClientMixin<PostsPage> {
+class _PostsPageState extends State<PostsPage> {
   List<Post> postList = [];
 
   @override
   void initState() {
     super.initState();
-    initRefresh();
+    init();
   }
 
-  Future<void> initRefresh() async {
+  Future<void> init() async {
     await BlocProvider.of<PostsCubit>(context).getPosts();
   }
 
   @override
   Widget build(BuildContext context) {
-    super.build(context);
-    return BlocBuilder<PostsCubit, PostsState>(
-      builder: (context, state) {
-        if (state is PostInitial || state is PostDataLoading) {
-          return const Center(child: CircularProgressIndicator());
-        } else if (state is PostDataLoaded) {
-          postList = state.postList;
-          return _buildPosts(postList);
-        }
-        return const Center(child: CircularProgressIndicator());
-      },
+    return Scaffold(
+      body: SafeArea(
+        child: BlocBuilder<PostsCubit, PostsState>(
+          builder: (context, state) {
+            if (state is PostInitial || state is PostDataLoading) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (state is PostDataLoaded) {
+              postList = state.postList;
+              return _buildPosts(postList);
+            }
+            return const Center(child: CircularProgressIndicator());
+          },
+        ),
+      ),
     );
   }
 
@@ -45,8 +47,12 @@ class _PostsPageState extends State<PostsPage>
     return Column(
       children: [
         Expanded(
-          child: ListView.builder(
+          child: ListView.separated(
+            padding: const EdgeInsets.all(10),
             itemCount: postList.length,
+            separatorBuilder: (context, index) {
+              return const SizedBox(height: 5);
+            },
             itemBuilder: (context, index) {
               final post = postList[index];
               return PostItem(post: post);
@@ -56,7 +62,4 @@ class _PostsPageState extends State<PostsPage>
       ],
     );
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }

@@ -29,6 +29,7 @@ class CheckInternetCubit extends Cubit<CheckInternetState> {
             : emit(Offline());
       }
     });
+
     connectionStream = Connectivity().onConnectivityChanged.listen((result) {
       if (result == ConnectivityResult.none) {
         /// Connection is not available
