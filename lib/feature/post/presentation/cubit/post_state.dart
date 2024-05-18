@@ -31,3 +31,26 @@ class PostDataFailed extends PostsState {
   @override
   List<Object?> get props => [error];
 }
+
+class DeleteDataLoading extends PostsState {
+  @override
+  List<Object?> get props => [];
+}
+
+class DeleteDataSuccess extends PostsState {
+  const DeleteDataSuccess({required this.isDeleted});
+
+  final bool isDeleted;
+
+  @override
+  List<Object?> get props => [isDeleted];
+}
+
+class DeleteDataFailed extends PostsState {
+  const DeleteDataFailed({required this.error});
+
+  final String error;
+
+  @override
+  List<Object?> get props => [error];
+}

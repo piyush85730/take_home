@@ -15,10 +15,10 @@ void preLoadImages(BuildContext context) {
   }
 }
 
-String getRandomImage() {
+String getRandomUserImage() {
   return ImageConstants.userList[Random().nextInt(6)];
 }
 
-String getPostImage() {
+String getRandomPostImage() {
   return ImageConstants.postList[Random().nextInt(11)];
 }

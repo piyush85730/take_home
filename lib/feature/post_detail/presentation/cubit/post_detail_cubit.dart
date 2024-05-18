@@ -11,6 +11,7 @@ class PostDetailCubit extends Cubit<PostDetailState> {
       : super(PostDetailInitial());
 
   final GetPostCommentsUC getPostCommentsUC;
+  List<PostComment> postCommentList = [];
 
   bool isLess = true;
 
@@ -24,6 +25,9 @@ class PostDetailCubit extends Cubit<PostDetailState> {
         emit(PostCommentDataFailed(error: failure.error));
       },
       (r) {
+        postCommentList
+          ..clear()
+          ..addAll(r);
         emit(PostCommentDataLoaded(postCommentList: r));
       },
     );
@@ -32,5 +36,10 @@ class PostDetailCubit extends Cubit<PostDetailState> {
   void changeShowItem() {
     isLess = !isLess;
     emit(ChangeShowItem(isLess: isLess));
+  }
+
+  void removePostComment(int index) {
+    postCommentList.removeAt(index);
+    emit(PostCommentDataLoaded(postCommentList: postCommentList));
   }
 }

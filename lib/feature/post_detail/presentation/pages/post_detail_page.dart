@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:take_home/core/constants/image_constants.dart';
+import 'package:one_context/one_context.dart';
 import 'package:take_home/core/constants/string_constants.dart';
 import 'package:take_home/core/constants/theme_constants.dart';
 import 'package:take_home/feature/post/domain/entity/post.dart';
@@ -25,6 +25,7 @@ class PostDetailPage extends StatefulWidget {
 
 class _PostDetailPageState extends State<PostDetailPage> {
   List<PostComment> postCommentList = [];
+  late PostDetailCubit postDetailCubit;
 
   @override
   void initState() {
@@ -33,8 +34,8 @@ class _PostDetailPageState extends State<PostDetailPage> {
   }
 
   Future<void> init() async {
-    await BlocProvider.of<PostDetailCubit>(context)
-        .getPostComments(widget.post.id);
+    postDetailCubit = BlocProvider.of<PostDetailCubit>(context);
+    await postDetailCubit.getPostComments(widget.post.id);
   }
 
   @override
@@ -44,10 +45,10 @@ class _PostDetailPageState extends State<PostDetailPage> {
         child: ListView(
           children: [
             Stack(
-              alignment: Alignment.bottomCenter,
+              alignment: Alignment.bottomLeft,
               children: [
                 Image.asset(
-                  ImageConstants.imgPost10,
+                  widget.post.postImage!,
                   height: 500,
                   width: MediaQuery.of(context).size.width,
                   fit: BoxFit.cover,
@@ -78,6 +79,24 @@ class _PostDetailPageState extends State<PostDetailPage> {
                     ),
                   ),
                 ),
+                GestureDetector(
+                  onTap: () {
+                    OneContext().pop();
+                  },
+                  child: Container(
+                    height: 40,
+                    width: 40,
+                    margin: const EdgeInsets.only(bottom: 430, left: 20),
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: ThemeColors.clrBlack70,
+                    ),
+                    child: const Icon(
+                      Icons.arrow_back,
+                      color: ThemeColors.clrWhite,
+                    ),
+                  ),
+                ),
               ],
             ),
             BlocBuilder<PostDetailCubit, PostDetailState>(
@@ -91,7 +110,9 @@ class _PostDetailPageState extends State<PostDetailPage> {
                 } else if (state is PostCommentDataLoaded ||
                     state is ChangeShowItem) {
                   if (state is PostCommentDataLoaded) {
-                    postCommentList = state.postCommentList;
+                    postCommentList
+                      ..clear()
+                      ..addAll(state.postCommentList);
                   }
 
                   return _buildPosts(
@@ -126,7 +147,12 @@ class _PostDetailPageState extends State<PostDetailPage> {
           },
           itemBuilder: (context, index) {
             final postComment = postCommentList[index];
-            return PostCommentItem(postComment: postComment);
+            return PostCommentItem(
+              postComment: postComment,
+              onDelete: () {
+                postDetailCubit.removePostComment(index);
+              },
+            );
           },
         ),
         const Padding(
@@ -136,7 +162,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
         if (postCommentList.length >= 3)
           GestureDetector(
             onTap: () {
-              BlocProvider.of<PostDetailCubit>(context).changeShowItem();
+              postDetailCubit.changeShowItem();
             },
             child: Container(
               color: ThemeColors.clrTransparent,

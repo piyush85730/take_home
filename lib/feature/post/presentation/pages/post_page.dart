@@ -12,6 +12,8 @@ class PostsPage extends StatefulWidget {
 }
 
 class _PostsPageState extends State<PostsPage> {
+  late PostsCubit postsCubit;
+
   @override
   void initState() {
     super.initState();
@@ -19,7 +21,8 @@ class _PostsPageState extends State<PostsPage> {
   }
 
   Future<void> init() async {
-    await BlocProvider.of<PostsCubit>(context).getPosts();
+    postsCubit = BlocProvider.of<PostsCubit>(context);
+    await postsCubit.getPosts();
   }
 
   @override
@@ -52,7 +55,12 @@ class _PostsPageState extends State<PostsPage> {
             },
             itemBuilder: (context, index) {
               final post = postList[index];
-              return PostItem(post: post);
+              return PostItem(
+                post: post,
+                onDelete: () {
+                  postsCubit.deletePost(post.id);
+                },
+              );
             },
           ),
         ),

@@ -18,6 +18,7 @@ class ThemeColors {
   static Color lightFontColor = fontColor.shade300;
   static Color titleColor = fontColor.shade500;
   static const Color clrBlack = Color(0xFF000000);
+  static const Color clrBlack70 = Color(0xBB000000);
   static const Color clrWhite = Color(0xFFffffff);
   static const Color clrScaffoldBG = Color(0xFFF5F5F5);
   static const Color clrTransparent = Colors.transparent;

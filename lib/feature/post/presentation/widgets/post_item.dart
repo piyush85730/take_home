@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:one_context/one_context.dart';
 import 'package:take_home/core/constants/string_constants.dart';
 import 'package:take_home/core/constants/theme_constants.dart';
-import 'package:take_home/core/utils/utils.dart';
 import 'package:take_home/feature/post/domain/entity/post.dart';
 import 'package:take_home/feature/post_detail/presentation/pages/post_detail_page.dart';
 
 class PostItem extends StatelessWidget {
-  const PostItem({required this.post, super.key});
+  const PostItem({required this.post, required this.onDelete, super.key});
 
   final Post post;
+  final Function() onDelete;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class PostItem extends StatelessWidget {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       image: DecorationImage(
-                        image: AssetImage(getRandomImage()),
+                        image: AssetImage(post.userImage!),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -59,6 +59,20 @@ class PostItem extends StatelessWidget {
                       ),
                     ],
                   ),
+                  const Spacer(),
+                  PopupMenuButton(
+                    onSelected: (value) {
+                      onDelete();
+                    },
+                    itemBuilder: (bc) {
+                      return const [
+                        PopupMenuItem(
+                          value: '/delete',
+                          child: Text("Delete"),
+                        ),
+                      ];
+                    },
+                  )
                 ],
               ),
               const SizedBox(height: 10),
@@ -76,7 +90,7 @@ class PostItem extends StatelessWidget {
                 clipBehavior: Clip.antiAlias,
                 decoration:
                     BoxDecoration(borderRadius: BorderRadius.circular(5)),
-                child: Image.asset(getPostImage()),
+                child: Image.asset(post.postImage!),
               ),
               const SizedBox(height: 5),
             ],

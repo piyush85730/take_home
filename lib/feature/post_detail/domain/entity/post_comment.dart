@@ -5,6 +5,7 @@ class PostComment {
     required this.name,
     required this.email,
     required this.body,
+    this.userImage,
   });
 
   int postId;
@@ -12,4 +13,5 @@ class PostComment {
   String name;
   String email;
   String body;
+  String? userImage;
 }

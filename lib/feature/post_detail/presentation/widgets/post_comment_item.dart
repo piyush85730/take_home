@@ -4,9 +4,11 @@ import 'package:take_home/core/utils/utils.dart';
 import 'package:take_home/feature/post_detail/domain/entity/post_comment.dart';
 
 class PostCommentItem extends StatelessWidget {
-  const PostCommentItem({required this.postComment, super.key});
+  const PostCommentItem(
+      {required this.postComment, required this.onDelete, super.key});
 
   final PostComment postComment;
+  final Function() onDelete;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,7 @@ class PostCommentItem extends StatelessWidget {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               image: DecorationImage(
-                image: AssetImage(getRandomImage()),
+                image: AssetImage(getRandomUserImage()),
                 fit: BoxFit.cover,
               ),
             ),
@@ -33,6 +35,19 @@ class PostCommentItem extends StatelessWidget {
               style: const TextStyle(fontSize: 14, color: ThemeColors.clrBlack),
             ),
           ),
+          PopupMenuButton(
+            onSelected: (value) {
+              onDelete();
+            },
+            itemBuilder: (bc) {
+              return const [
+                PopupMenuItem(
+                  value: '/delete',
+                  child: Text("Delete"),
+                ),
+              ];
+            },
+          )
         ],
       ),
     );
