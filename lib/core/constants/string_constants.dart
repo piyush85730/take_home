@@ -25,4 +25,5 @@ class StringConstants {
 class Routes {
   static const String splashPage = "/splashPage";
   static const String postsPage = "/postsPage";
+  static const String postDetailPage = "/postDetailPage";
 }

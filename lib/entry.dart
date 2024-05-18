@@ -6,6 +6,7 @@ import 'package:take_home/core/constants/theme_constants.dart';
 import 'package:take_home/core/presentation/cubits/check_internet_cubit/check_internet_cubit.dart';
 import 'package:take_home/core/utils/utils.dart';
 import 'package:take_home/feature/post/presentation/cubit/post_cubit.dart';
+import 'package:take_home/feature/post_detail/presentation/cubit/post_detail_cubit.dart';
 import 'package:take_home/feature/splash/presentation/cubit/splash_cubit.dart';
 import 'package:take_home/feature/splash/presentation/pages/splash_page.dart';
 import 'package:take_home/injection_container/injection_container.dart';
@@ -25,6 +26,7 @@ class Entry extends StatelessWidget {
         ),
         BlocProvider(create: (context) => sl<SplashCubit>()),
         BlocProvider(create: (context) => sl<PostsCubit>()),
+        BlocProvider(create: (context) => sl<PostDetailCubit>()),
       ],
       child: MaterialApp(
         title: StringConstants.appName,

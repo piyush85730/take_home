@@ -4,3 +4,9 @@ export 'package:take_home/feature/post/data/repositories/post_repository_impl.da
 export 'package:take_home/feature/post/domain/repositories/post_repository.dart';
 export 'package:take_home/feature/post/domain/usecases/get_posts.dart';
 export 'package:take_home/feature/post/presentation/cubit/post_cubit.dart';
+export 'package:take_home/feature/post_detail/data/datasources/post_detail_remote_datasource.dart';
+export 'package:take_home/feature/post_detail/data/repositories/post_detail_repository_impl.dart';
+export 'package:take_home/feature/post_detail/domain/repositories/post_detail_repository.dart';
+export 'package:take_home/feature/post_detail/domain/usecases/get_post_comment.dart';
+export 'package:take_home/feature/post_detail/presentation/cubit/post_detail_cubit.dart';
+export 'package:take_home/feature/splash/presentation/cubit/splash_cubit.dart';

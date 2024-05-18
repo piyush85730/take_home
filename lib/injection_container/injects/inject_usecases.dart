@@ -5,8 +5,12 @@ import 'package:take_home/injection_container/injection_container_imports.dart';
 class InjectableUseCases {
   InjectableUseCases.inject() {
     sl
-      .registerLazySingleton(
+      ..registerLazySingleton(
         () => GetPostsUC(postRepository: sl<PostRepository>()),
+      )
+      ..registerLazySingleton(
+        () =>
+            GetPostCommentsUC(postDetailRepository: sl<PostDetailRepository>()),
       );
   }
 }

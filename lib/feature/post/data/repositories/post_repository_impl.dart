@@ -5,7 +5,6 @@ import 'package:take_home/core/services/short_hand.dart';
 import 'package:take_home/feature/post/data/datasources/post_remote_datasource.dart';
 import 'package:take_home/feature/post/domain/entity/post.dart';
 import 'package:take_home/feature/post/domain/repositories/post_repository.dart';
-import 'package:take_home/feature/post/domain/usecases/get_posts.dart';
 
 class PostRepositoryImpl implements PostRepository {
   PostRepositoryImpl({required this.postRemoteDataSource});
@@ -13,13 +12,10 @@ class PostRepositoryImpl implements PostRepository {
   final PostRemoteDataSource postRemoteDataSource;
 
   @override
-  Future<Either<Failure, List<Post>>> getPost(
-    GetPostsParams getPostsParams,
-  ) async {
+  Future<Either<Failure, List<Post>>> getPost() async {
     if (ShortHand.checkInternetCubit.state is Online) {
       try {
-        final List<Post> data =
-            await postRemoteDataSource.getPost(getPostsParams);
+        final List<Post> data = await postRemoteDataSource.getPost();
         return Right(data);
       } catch (e) {
         return Left(GeneralFailure(error: e.toString()));
