@@ -11,10 +11,7 @@ class ApiService {
     required String path,
     Map<String, dynamic>? queryParams,
   }) async {
-    final response = await _dio.get(
-      "https://jsonplaceholder.typicode.com/posts/",
-      queryParameters: queryParams,
-    );
+    final response = await _dio.get(path, queryParameters: queryParams);
     return response;
   }
 }

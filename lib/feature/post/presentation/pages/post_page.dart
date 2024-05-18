@@ -12,8 +12,6 @@ class PostsPage extends StatefulWidget {
 }
 
 class _PostsPageState extends State<PostsPage> {
-  List<Post> postList = [];
-
   @override
   void initState() {
     super.initState();
@@ -33,8 +31,7 @@ class _PostsPageState extends State<PostsPage> {
             if (state is PostInitial || state is PostDataLoading) {
               return const Center(child: CircularProgressIndicator());
             } else if (state is PostDataLoaded) {
-              postList = state.postList;
-              return _buildPosts(postList);
+              return _buildPosts(state.postList);
             }
             return const Center(child: CircularProgressIndicator());
           },

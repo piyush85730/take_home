@@ -10,26 +10,30 @@ class PostCommentItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {},
-      child: Card(
-        child: Container(
-          padding: const EdgeInsets.all(15),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                postComment.body,
-                style: const TextStyle(
-                  fontSize: 14,
-                  color: ThemeColors.clrBlack,
-                ),
+    return Container(
+      padding: const EdgeInsets.only(top: 10, bottom: 5),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            height: 40,
+            width: 40,
+            margin: const EdgeInsets.only(right: 10),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              image: DecorationImage(
+                image: AssetImage(getRandomImage()),
+                fit: BoxFit.cover,
               ),
-            ],
+            ),
           ),
-        ),
+          Expanded(
+            child: Text(
+              postComment.body,
+              style: const TextStyle(fontSize: 14, color: ThemeColors.clrBlack),
+            ),
+          ),
+        ],
       ),
     );
   }

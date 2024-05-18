@@ -15,12 +15,12 @@ class PostCommentDataLoading extends PostDetailState {
 }
 
 class PostCommentDataLoaded extends PostDetailState {
-  const PostCommentDataLoaded({required this.postList});
+  const PostCommentDataLoaded({required this.postCommentList});
 
-  final List<PostComment> postList;
+  final List<PostComment> postCommentList;
 
   @override
-  List<Object?> get props => [postList];
+  List<Object?> get props => [postCommentList];
 }
 
 class PostCommentDataFailed extends PostDetailState {
@@ -30,4 +30,13 @@ class PostCommentDataFailed extends PostDetailState {
 
   @override
   List<Object?> get props => [error];
+}
+
+class ChangeShowItem extends PostDetailState {
+  const ChangeShowItem({required this.isLess});
+
+  final bool isLess;
+
+  @override
+  List<Object?> get props => [isLess];
 }

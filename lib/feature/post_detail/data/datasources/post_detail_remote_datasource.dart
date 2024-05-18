@@ -10,7 +10,8 @@ import 'package:take_home/injection_container/injection_container.dart';
 // ignore: one_member_abstracts
 abstract class PostDetailRemoteDataSource {
   Future<List<PostCommentModel>> getPostComments(
-      GetPostCommentsParams getPostCommentsParams);
+    GetPostCommentsParams getPostCommentsParams,
+  );
 }
 
 class PostDetailRemoteDataSourceImpl implements PostDetailRemoteDataSource {
@@ -24,8 +25,8 @@ class PostDetailRemoteDataSourceImpl implements PostDetailRemoteDataSource {
       final raw = await sl<ApiService>().getRequest(path: path);
       final res = raw.data;
       debugPrint("getPostComments 1 -> $res");
-      final postList = postCommentModelFromJson(json.encode(res));
-      return postList;
+      final postCommentList = postCommentModelFromJson(json.encode(res));
+      return postCommentList;
     } catch (e) {
       throw ServerException(error: e.toString());
     }
