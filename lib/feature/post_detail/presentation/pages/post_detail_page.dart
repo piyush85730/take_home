@@ -48,12 +48,12 @@ class _PostDetailPageState extends State<PostDetailPage> {
               children: [
                 Image.asset(
                   widget.post.postImage!,
-                  height: 500,
+                  height: 400,
                   width: MediaQuery.of(context).size.width,
                   fit: BoxFit.cover,
                 ),
                 Container(
-                  height: 500,
+                  height: 400,
                   width: MediaQuery.of(context).size.width,
                   decoration: const BoxDecoration(
                     gradient: LinearGradient(
@@ -85,7 +85,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                   child: Container(
                     height: 40,
                     width: 40,
-                    margin: const EdgeInsets.only(bottom: 430, left: 20),
+                    margin: const EdgeInsets.only(bottom: 330, left: 20),
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                       color: ThemeColors.clrBlack70,
