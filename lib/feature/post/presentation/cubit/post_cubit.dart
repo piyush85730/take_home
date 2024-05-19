@@ -12,6 +12,8 @@ class PostsCubit extends Cubit<PostsState> {
   PostsCubit({required this.getPostsUC, required this.deletePostUC})
       : super(PostInitial());
 
+  final List<Post> postList = [];
+
   final GetPostsUC getPostsUC;
   final DeletePostUC deletePostUC;
 
@@ -24,7 +26,10 @@ class PostsCubit extends Cubit<PostsState> {
         emit(PostDataFailed(error: failure.error));
       },
       (r) {
-        emit(PostDataLoaded(postList: r));
+        postList
+          ..clear()
+          ..addAll(r);
+        emit(PostDataLoaded(postList: postList));
       },
     );
   }
@@ -40,6 +45,10 @@ class PostsCubit extends Cubit<PostsState> {
       },
       (r) {
         emit(DeleteDataSuccess(isDeleted: r));
+        if (r == true) {
+          postList.removeWhere((item) => item.id == postId);
+          emit(PostDataLoaded(postList: postList));
+        }
       },
     );
   }

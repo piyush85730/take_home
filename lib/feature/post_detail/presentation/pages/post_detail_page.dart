@@ -101,6 +101,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
             ),
             BlocBuilder<PostDetailCubit, PostDetailState>(
               builder: (context, state) {
+                debugPrint("PostCommentsList b 0 -> $state");
                 if (state is PostDetailInitial ||
                     state is PostCommentDataLoading) {
                   return Container(
@@ -110,9 +111,15 @@ class _PostDetailPageState extends State<PostDetailPage> {
                 } else if (state is PostCommentDataLoaded ||
                     state is ChangeShowItem) {
                   if (state is PostCommentDataLoaded) {
+                    debugPrint(
+                      "PostCommentsList -> ${state.postCommentList.length}",
+                    );
                     postCommentList
                       ..clear()
                       ..addAll(state.postCommentList);
+                    debugPrint(
+                      "PostCommentsList -> ${postCommentList.length}",
+                    );
                   }
 
                   return _buildPosts(
@@ -155,10 +162,19 @@ class _PostDetailPageState extends State<PostDetailPage> {
             );
           },
         ),
-        const Padding(
-          padding: EdgeInsets.only(left: 20, right: 20),
-          child: Divider(height: 1, color: ThemeColors.clrGrey),
-        ),
+        if (postCommentList.isEmpty)
+          Container(
+            margin: const EdgeInsets.only(top: 25),
+            child: const Text(
+              "No Comments",
+              style: TextStyle(fontSize: 16, color: ThemeColors.clrBlack),
+            ),
+          ),
+        if (postCommentList.length >= 3)
+          const Padding(
+            padding: EdgeInsets.only(left: 20, right: 20),
+            child: Divider(height: 1, color: ThemeColors.clrGrey),
+          ),
         if (postCommentList.length >= 3)
           GestureDetector(
             onTap: () {

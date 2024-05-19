@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:take_home/core/error/failure.dart';
 import 'package:take_home/feature/post_detail/domain/entity/post_comment.dart';
@@ -28,7 +29,7 @@ class PostDetailCubit extends Cubit<PostDetailState> {
         postCommentList
           ..clear()
           ..addAll(r);
-        emit(PostCommentDataLoaded(postCommentList: r));
+        emit(PostCommentDataLoaded(postCommentList: postCommentList));
       },
     );
   }
@@ -40,6 +41,8 @@ class PostDetailCubit extends Cubit<PostDetailState> {
 
   void removePostComment(int index) {
     postCommentList.removeAt(index);
+    debugPrint("removePostComment -> $index ${postCommentList.length}");
+    emit(RemovePostCommentState());
     emit(PostCommentDataLoaded(postCommentList: postCommentList));
   }
 }

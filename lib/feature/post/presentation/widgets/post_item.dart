@@ -72,7 +72,7 @@ class PostItem extends StatelessWidget {
                         ),
                       ];
                     },
-                  )
+                  ),
                 ],
               ),
               const SizedBox(height: 10),

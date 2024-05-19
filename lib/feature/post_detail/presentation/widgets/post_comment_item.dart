@@ -4,8 +4,11 @@ import 'package:take_home/core/utils/utils.dart';
 import 'package:take_home/feature/post_detail/domain/entity/post_comment.dart';
 
 class PostCommentItem extends StatelessWidget {
-  const PostCommentItem(
-      {required this.postComment, required this.onDelete, super.key});
+  const PostCommentItem({
+    required this.postComment,
+    required this.onDelete,
+    super.key,
+  });
 
   final PostComment postComment;
   final Function() onDelete;
@@ -47,7 +50,7 @@ class PostCommentItem extends StatelessWidget {
                 ),
               ];
             },
-          )
+          ),
         ],
       ),
     );

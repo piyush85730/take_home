@@ -21,10 +21,8 @@ class PostDetailRemoteDataSourceImpl implements PostDetailRemoteDataSource {
   ) async {
     final path = "posts/${getPostCommentsParams.postId}/comments";
     try {
-      debugPrint("getPostComments 0 -> $path");
       final raw = await sl<ApiService>().getRequest(path: path);
       final res = raw.data;
-      debugPrint("getPostComments 1 -> $res");
       final postCommentList = postCommentModelFromJson(json.encode(res));
       return postCommentList;
     } catch (e) {

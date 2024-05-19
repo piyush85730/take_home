@@ -40,3 +40,8 @@ class ChangeShowItem extends PostDetailState {
   @override
   List<Object?> get props => [isLess];
 }
+
+class RemovePostCommentState extends PostDetailState {
+  @override
+  List<Object?> get props => [];
+}
