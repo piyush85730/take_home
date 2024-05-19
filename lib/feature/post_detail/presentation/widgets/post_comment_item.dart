@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:take_home/core/constants/string_constants.dart';
 import 'package:take_home/core/constants/theme_constants.dart';
 import 'package:take_home/core/utils/utils.dart';
 import 'package:take_home/feature/post_detail/domain/entity/post_comment.dart';
@@ -54,7 +55,9 @@ class PostCommentItem extends StatelessWidget {
                           Text(
                             postComment.email,
                             style: const TextStyle(
-                                fontSize: 14, color: ThemeColors.clrGrey,),
+                              fontSize: 14,
+                              color: ThemeColors.clrGrey,
+                            ),
                           ),
                         ],
                       ),
@@ -63,11 +66,13 @@ class PostCommentItem extends StatelessWidget {
                 ),
                 Container(
                   width: double.maxFinite,
-                  margin: const EdgeInsets.only(top: 5,left: 20),
+                  margin: const EdgeInsets.only(top: 5, left: 50),
                   child: Text(
                     postComment.body,
                     style: const TextStyle(
-                        fontSize: 14, color: ThemeColors.clrBlack,),
+                      fontSize: 14,
+                      color: ThemeColors.clrBlack,
+                    ),
                   ),
                 ),
               ],
@@ -81,7 +86,7 @@ class PostCommentItem extends StatelessWidget {
               return const [
                 PopupMenuItem(
                   value: '/delete',
-                  child: Text("Delete"),
+                  child: Text(StringConstants.strDelete),
                 ),
               ];
             },

@@ -53,7 +53,7 @@ class PostItem extends StatelessWidget {
                         ),
                       ),
                       const Text(
-                        "2 hours ago",
+                        StringConstants.str2HoursAgo,
                         style:
                             TextStyle(fontSize: 14, color: ThemeColors.clrGrey),
                       ),
@@ -68,7 +68,7 @@ class PostItem extends StatelessWidget {
                       return const [
                         PopupMenuItem(
                           value: '/delete',
-                          child: Text("Delete"),
+                          child: Text(StringConstants.strDelete),
                         ),
                       ];
                     },

@@ -4,6 +4,8 @@ class StringConstants {
   static const String strPost = 'Post';
   static const String strShowLess = 'Show Less';
   static const String strShowMore = 'Show More';
+  static const String str2HoursAgo = '2 hours ago';
+  static const String strDelete = 'Delete';
 
   static const userNameList = <String>[
     "Dylan Springer",
