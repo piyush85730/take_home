@@ -14,8 +14,6 @@ class PostDetailCubit extends Cubit<PostDetailState> {
   final GetPostCommentsUC getPostCommentsUC;
   List<PostComment> postCommentList = [];
 
-  bool isLess = true;
-
   Future<void> getPostComments(int postId) async {
     emit(PostCommentDataLoading());
     final getPostsFailedOrSuccess =
@@ -32,11 +30,6 @@ class PostDetailCubit extends Cubit<PostDetailState> {
         emit(PostCommentDataLoaded(postCommentList: postCommentList));
       },
     );
-  }
-
-  void changeShowItem() {
-    isLess = !isLess;
-    emit(ChangeShowItem(isLess: isLess));
   }
 
   void removePostComment(int index) {

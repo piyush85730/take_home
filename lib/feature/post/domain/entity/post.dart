@@ -6,6 +6,7 @@ class Post {
     required this.body,
     this.userImage,
     this.postImage,
+    this.userName,
   });
 
   int userId;
@@ -14,4 +15,5 @@ class Post {
   String body;
   String? userImage;
   String? postImage;
+  String? userName;
 }

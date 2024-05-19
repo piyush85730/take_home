@@ -32,15 +32,6 @@ class PostCommentDataFailed extends PostDetailState {
   List<Object?> get props => [error];
 }
 
-class ChangeShowItem extends PostDetailState {
-  const ChangeShowItem({required this.isLess});
-
-  final bool isLess;
-
-  @override
-  List<Object?> get props => [isLess];
-}
-
 class RemovePostCommentState extends PostDetailState {
   @override
   List<Object?> get props => [];

@@ -20,22 +20,57 @@ class PostCommentItem extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            height: 40,
-            width: 40,
-            margin: const EdgeInsets.only(right: 10),
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                image: AssetImage(getRandomUserImage()),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
           Expanded(
-            child: Text(
-              postComment.body,
-              style: const TextStyle(fontSize: 14, color: ThemeColors.clrBlack),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Container(
+                      height: 40,
+                      width: 40,
+                      margin: const EdgeInsets.only(right: 10),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                          image: AssetImage(getRandomUserImage()),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            postComment.name,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                            ),
+                          ),
+                          Text(
+                            postComment.email,
+                            style: const TextStyle(
+                                fontSize: 14, color: ThemeColors.clrGrey,),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                Container(
+                  width: double.maxFinite,
+                  margin: const EdgeInsets.only(top: 5,left: 20),
+                  child: Text(
+                    postComment.body,
+                    style: const TextStyle(
+                        fontSize: 14, color: ThemeColors.clrBlack,),
+                  ),
+                ),
+              ],
             ),
           ),
           PopupMenuButton(

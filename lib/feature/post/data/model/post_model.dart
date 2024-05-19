@@ -21,12 +21,14 @@ class PostModel extends Post {
     required super.body,
     super.userImage,
     super.postImage,
+    super.userName,
   });
 
   factory PostModel.fromJson(Map<String, dynamic> json) {
     final postModel = _$PostModelFromJson(json)
       ..userImage = getRandomUserImage()
-      ..postImage = getRandomPostImage();
+      ..postImage = getRandomPostImage()
+      ..userName = getRandomUserName();
     return postModel;
   }
 

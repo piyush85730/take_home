@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:take_home/core/constants/image_constants.dart';
+import 'package:take_home/core/constants/string_constants.dart';
 
 double calculateDiscountPrice(double originalPrice, double discountPercentage) {
   final discountAmount = originalPrice * (discountPercentage / 100);
@@ -21,4 +22,8 @@ String getRandomUserImage() {
 
 String getRandomPostImage() {
   return ImageConstants.postList[Random().nextInt(11)];
+}
+
+String getRandomUserName() {
+  return StringConstants.userNameList[Random().nextInt(99)];
 }

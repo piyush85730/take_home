@@ -42,17 +42,17 @@ class PostItem extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const Column(
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Test",
-                        style: TextStyle(
+                        post.userName!,
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
                         ),
                       ),
-                      Text(
+                      const Text(
                         "2 hours ago",
                         style:
                             TextStyle(fontSize: 14, color: ThemeColors.clrGrey),
@@ -78,19 +78,19 @@ class PostItem extends StatelessWidget {
               const SizedBox(height: 10),
               Text(post.title, style: const TextStyle(fontSize: 16)),
               const SizedBox(height: 5),
+              Container(
+                clipBehavior: Clip.antiAlias,
+                decoration:
+                    BoxDecoration(borderRadius: BorderRadius.circular(5)),
+                child: Image.asset(post.postImage!),
+              ),
+              const SizedBox(height: 10),
               Text(
                 post.body,
                 style: const TextStyle(
                   fontSize: 14,
                   color: ThemeColors.clrGrey,
                 ),
-              ),
-              const SizedBox(height: 10),
-              Container(
-                clipBehavior: Clip.antiAlias,
-                decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(5)),
-                child: Image.asset(post.postImage!),
               ),
               const SizedBox(height: 5),
             ],

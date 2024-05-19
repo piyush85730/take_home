@@ -10,7 +10,7 @@ class SplashCubit extends Cubit<SplashState> {
 
   void init() {
     Future.delayed(const Duration(seconds: 2), () {
-      OneContext().pushNamed(Routes.postsPage);
+      OneContext().pushReplacementNamed(Routes.postsPage);
     });
   }
 }

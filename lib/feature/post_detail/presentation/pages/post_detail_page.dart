@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:one_context/one_context.dart';
-import 'package:take_home/core/constants/string_constants.dart';
 import 'package:take_home/core/constants/theme_constants.dart';
 import 'package:take_home/feature/post/domain/entity/post.dart';
 import 'package:take_home/feature/post_detail/domain/entity/post_comment.dart';
@@ -108,24 +107,18 @@ class _PostDetailPageState extends State<PostDetailPage> {
                     margin: const EdgeInsets.only(top: 50),
                     child: const Center(child: CircularProgressIndicator()),
                   );
-                } else if (state is PostCommentDataLoaded ||
-                    state is ChangeShowItem) {
-                  if (state is PostCommentDataLoaded) {
-                    debugPrint(
-                      "PostCommentsList -> ${state.postCommentList.length}",
-                    );
-                    postCommentList
-                      ..clear()
-                      ..addAll(state.postCommentList);
-                    debugPrint(
-                      "PostCommentsList -> ${postCommentList.length}",
-                    );
-                  }
-
-                  return _buildPosts(
-                    postCommentList,
-                    isLess: (state is ChangeShowItem) ? state.isLess : true,
+                } else if (state is PostCommentDataLoaded) {
+                  debugPrint(
+                    "PostCommentsList -> ${state.postCommentList.length}",
                   );
+                  postCommentList
+                    ..clear()
+                    ..addAll(state.postCommentList);
+                  debugPrint(
+                    "PostCommentsList -> ${postCommentList.length}",
+                  );
+
+                  return _buildPosts(postCommentList);
                 }
                 return Container(
                   margin: const EdgeInsets.only(top: 50),
@@ -168,38 +161,6 @@ class _PostDetailPageState extends State<PostDetailPage> {
             child: const Text(
               "No Comments",
               style: TextStyle(fontSize: 16, color: ThemeColors.clrBlack),
-            ),
-          ),
-        if (postCommentList.length >= 3)
-          const Padding(
-            padding: EdgeInsets.only(left: 20, right: 20),
-            child: Divider(height: 1, color: ThemeColors.clrGrey),
-          ),
-        if (postCommentList.length >= 3)
-          GestureDetector(
-            onTap: () {
-              postDetailCubit.changeShowItem();
-            },
-            child: Container(
-              color: ThemeColors.clrTransparent,
-              margin: const EdgeInsets.only(top: 10, bottom: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    isLess
-                        ? StringConstants.strShowMore
-                        : StringConstants.strShowLess,
-                    style: const TextStyle(
-                      fontSize: 14,
-                      color: ThemeColors.clrBlack,
-                    ),
-                  ),
-                  Icon(
-                    isLess ? Icons.arrow_drop_down : Icons.arrow_drop_up,
-                  ),
-                ],
-              ),
             ),
           ),
       ],
